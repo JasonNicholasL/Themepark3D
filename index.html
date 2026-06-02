@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎡 Dunia Karnaval 3D</title>
+    <title>🎡 Themepark 3D</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;700&display=swap');
 
@@ -152,14 +152,14 @@
         <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
         <div class="bulb"></div>
     </div>
-    <h1>🎡 DUNIA KARNAVAL</h1>
-    <p style="color:rgba(255,255,255,.5);font-size:.95rem;letter-spacing:2px;">CARNIVAL WORLD 3D</p>
-    <button id="playBtn">▶ MASUK KE KARNAVAL</button>
+    <h1>🎡 Themepark</h1>
+    <!-- <p style="color:rgba(255,255,255,.5);font-size:.95rem;letter-spacing:2px;">CARNIVAL WORLD 3D</p> -->
+    <button id="playBtn">▶ Enter the Themepark</button>
     <div id="hints">
-        <strong>W A S D</strong> = Berjalan &nbsp;|&nbsp;
+        <strong>W A S D</strong>&nbsp; to Move &nbsp;|&nbsp;
         <strong>Mouse</strong> = Menoleh<br>
-        <strong>ESC</strong> = Keluar &nbsp;|&nbsp;
-        <strong>Klik</strong> = Interaksi objek
+        <strong>ESC</strong> = Exit &nbsp;|&nbsp;
+        <strong>Klik</strong>&nbsp; to Interact
     </div>
     <div class="light-row" style="margin-top:24px;margin-bottom:0">
         <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
@@ -241,7 +241,7 @@ const keys = { w:false, a:false, s:false, d:false, space:false, ctrl:false };
 let isFreeRoamMode = false;
 let jumpVelocity = 0;
 const GRAVITY = 0.01;
-const JUMP_FORCE = 0.5;
+const JUMP_FORCE = 0.2;
 const GROUND_LEVEL = 1.7;
 
 document.addEventListener('keydown', e => {
@@ -505,74 +505,13 @@ makeLampPost( 6, 20, 0xffe438);
 //  🎡 BIANGLALA (FERRIS WHEEL)
 //  ── animasi: berputar pada sumbu Z lokal
 // ════════════════════════════════════════════════════════
-const ferrisGroup = new THREE.Group();
+// const dracoLoader = new DRACOLoader();
+// dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
+// loader.setDRACOLoader( dracoLoader );
+// const gltf = await loader.loadAsync( 'models/Ferriswheel/scene.gltf' );
 
-(function buildFerrisWheel() {
-    const RADIUS   = 7;
-    const GONDOLAS = 12;
-    const spokeCol = 0xffcc00;
-    const rimMat   = new THREE.MeshStandardMaterial({ color: spokeCol, metalness:0.5, roughness:0.4 });
-    const axleMat  = new THREE.MeshStandardMaterial({ color: 0xcccccc, metalness:0.8, roughness:0.2 });
-
-    // Poros tengah
-    const axleGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.8, 12);
-    const axle    = new THREE.Mesh(axleGeo, axleMat);
-    axle.rotation.x = Math.PI/2;
-    ferrisGroup.add(axle);
-
-    // Rim (lingkaran luar) — dibuat dari CylinderGeometry tipis
-    const rimGeo = new THREE.TorusGeometry(RADIUS, 0.15, 8, 48);
-    const rim    = new THREE.Mesh(rimGeo, rimMat);
-    ferrisGroup.add(rim);
-
-    // Jari-jari (spokes) dan gondola
-    for (let i = 0; i < GONDOLAS; i++) {
-        const angle = (i / GONDOLAS) * Math.PI * 2;
-        const x = Math.sin(angle) * RADIUS;
-        const y = Math.cos(angle) * RADIUS;
-
-        // Spoke
-        const spokeLen = RADIUS;
-        const spokeGeo = new THREE.CylinderGeometry(0.06, 0.06, spokeLen, 6);
-        const spoke    = new THREE.Mesh(spokeGeo, rimMat);
-        spoke.position.set(x/2, y/2, 0);
-        spoke.rotation.z = -angle;
-        ferrisGroup.add(spoke);
-
-        // Gondola (kabin)
-        const gondGeo = new THREE.BoxGeometry(0.8, 0.8, 0.5);
-        const gondMat = new THREE.MeshStandardMaterial({
-            color: lampColors[i % lampColors.length],
-            emissive: lampColors[i % lampColors.length],
-            emissiveIntensity: 0.3,
-            roughness: 0.5
-        });
-        const gond = new THREE.Mesh(gondGeo, gondMat);
-        gond.position.set(x, y, 0);
-        gond.castShadow = true;
-        ferrisGroup.add(gond);
-
-        // Lampu kecil di gondola
-        const pl = new THREE.PointLight(lampColors[i % lampColors.length], 0.6, 3);
-        pl.position.set(x, y, 0.5);
-        ferrisGroup.add(pl);
-    }
-
-    // Kaki penyangga
-    const legMat = new THREE.MeshStandardMaterial({ color: 0x888888, metalness:0.6, roughness:0.4 });
-    const legGeo = new THREE.CylinderGeometry(0.15, 0.25, 8, 8);
-    [[-3, -4], [3, -4]].forEach(([lx, ly]) => {
-        const leg = new THREE.Mesh(legGeo, legMat);
-        leg.position.set(lx, ly, 0);
-        leg.rotation.z = lx < 0 ? 0.3 : -0.3;
-        leg.castShadow = true;
-        ferrisGroup.add(leg);
-    });
-})();
-
-ferrisGroup.position.set(-18, 8, -8);
-scene.add(ferrisGroup);
-addCollider(-18, -8, 2, 2, 'bianglala');
+// ── Ferriswheel loaded from models directory ──
+// Placeholder removed — model loaded via gltfLoader below
 
 // ════════════════════════════════════════════════════════
 //  🎠 KOMEDI PUTAR (CAROUSEL / MERRY-GO-ROUND)
@@ -1086,22 +1025,87 @@ addCollider(-22, 6, 3, 1.5, 'perahu-bajak');
 // ════════════════════════════════════════════════════════
 //  🔌 TITIK IMPORT GLTF — tambahkan model 3D kustom di sini
 // ════════════════════════════════════════════════════════
-/*
-const gltfLoader = new THREE.GLTFLoader();
 
-// ── Contoh 1: Bianglala detail (ganti ferrisGroup jika punya model GLTF) ──
-gltfLoader.load('models/ferris_wheel.glb', gltf => {
-    const model = gltf.scene;
-    model.position.set(-18, 0, -8);
-    model.scale.set(1, 1, 1);
-    model.traverse(node => {
-        if (node.isMesh) { node.castShadow = true; node.receiveShadow = true; }
+const gltfLoader = new THREE.GLTFLoader();
+let ferrisGroup; // Store reference for animation
+let ferrisWheel; // Store reference to the wheel mesh for rotation
+let ferrisCabin; // Store reference to the cabin parent node
+let cabins = []; // Store individual cabin nodes
+let ferrisRotationAngle = 0; // Track total rotation angle
+const CABIN_RADIUS = 10; // Distance from wheel center
+
+// Helper function to update cabin position based on angle
+function updateCabin(cabinMesh, angle) {
+    const cx = ferrisGroup.position.x;
+    const cy = ferrisGroup.position.y;
+    cabinMesh.position.set(
+        cx + Math.cos(angle) * CABIN_RADIUS,
+        cy + Math.sin(angle) * CABIN_RADIUS,
+        ferrisGroup.position.z
+    );
+    ferrisGroup.traverse(node => {
+        if (node.isMesh) { 
+            node.castShadow = true; 
+            node.receiveShadow = true; 
+            // Find and store the wheel mesh for rotation
+            if (node.name.includes('wheel')) {
+                ferrisWheel = node;
+            }
+        }
+        // Find and store the cabin group for rotation
+        if (node.name === 'cabin') {
+            ferrisCabin = node;
+            // Store each cabin child with its initial angle
+            node.children.forEach((cabin, index) => {
+                const initialAngle = (index / node.children.length) * Math.PI * 2;
+                cabins.push({
+                    mesh: cabin,
+                    initialAngle: initialAngle
+                });
+            });
+        }
     });
-    scene.remove(ferrisGroup); // hapus placeholder
-    scene.add(model);
+}
+
+// ── Bianglala (Ferriswheel) dari models/Ferriswheel ──
+gltfLoader.load('models/Ferriswheel/scene.gltf', gltf => {
+    ferrisGroup = gltf.scene;
+    ferrisGroup.position.set(-18, 10, -8);
+    ferrisGroup.scale.set(1, 1, 1);
+    ferrisGroup.traverse(node => {
+        if (node.isMesh) { 
+            node.castShadow = true; 
+            node.receiveShadow = true; 
+            // Find and store the wheel mesh for rotation
+            if (node.name.includes('wheel')) {
+                ferrisWheel = node;
+            }
+        }
+        // Find and store the cabin group for rotation
+        if (node.name === 'cabin') {
+            ferrisCabin = node;
+            // Store each cabin child with its initial angle
+            node.children.forEach((cabin, index) => {
+                const initialAngle = (index / node.children.length) * Math.PI * 2;
+                cabins.push({
+                    mesh: cabin,
+                    initialAngle: initialAngle
+                });
+            });
+        }
+    });
+    scene.add(ferrisGroup);
+    addCollider(-18, -8, 2, 2, 'bianglala');
 });
+const bboxHelper = new THREE.BoxHelper(ferrisGroup, 0xffff00);
+
+// 3. Add the helper to your scene
+scene.add(bboxHelper);
+
+
 
 // ── Contoh 2: Komedi putar detail ──
+/*
 gltfLoader.load('models/carousel.glb', gltf => {
     const model = gltf.scene;
     model.position.set(16, 0, -5);
@@ -1110,6 +1114,7 @@ gltfLoader.load('models/carousel.glb', gltf => {
 });
 
 // ── Contoh 3: Karakter / NPC karnaval ──
+/*
 gltfLoader.load('models/clown.glb', gltf => {
     const model = gltf.scene;
     model.position.set(0, 0, 10);
@@ -1173,8 +1178,16 @@ function animate() {
     const elapsed = clock.getElapsedTime();
     const delta   = clock.getDelta ? 0.016 : 0.016; // fallback
 
-    // ── Bianglala berputar pelan ──
-    ferrisGroup.rotation.z += 0.003;
+    // ── Bianglala (wheel) berputar dan cabins orbit ──
+    if (ferrisWheel) {
+        ferrisWheel.rotation.z += 0.003;
+        ferrisRotationAngle += 0.003;
+    }
+    // Update cabin positions to orbit around wheel center
+    cabins.forEach((cabin) => {
+        const currentAngle = cabin.initialAngle + ferrisRotationAngle;
+        updateCabin(cabin.mesh, currentAngle);
+    });
 
     // ── Komedi putar berputar ──
     carouselGroup.rotation.y += 0.008;
