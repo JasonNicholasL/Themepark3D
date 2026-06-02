@@ -1043,28 +1043,6 @@ function updateCabin(cabinMesh, angle) {
         cy + Math.sin(angle) * CABIN_RADIUS,
         ferrisGroup.position.z
     );
-    ferrisGroup.traverse(node => {
-        if (node.isMesh) { 
-            node.castShadow = true; 
-            node.receiveShadow = true; 
-            // Find and store the wheel mesh for rotation
-            if (node.name.includes('wheel')) {
-                ferrisWheel = node;
-            }
-        }
-        // Find and store the cabin group for rotation
-        if (node.name === 'cabin') {
-            ferrisCabin = node;
-            // Store each cabin child with its initial angle
-            node.children.forEach((cabin, index) => {
-                const initialAngle = (index / node.children.length) * Math.PI * 2;
-                cabins.push({
-                    mesh: cabin,
-                    initialAngle: initialAngle
-                });
-            });
-        }
-    });
 }
 
 // ── Bianglala (Ferriswheel) dari models/Ferriswheel ──
@@ -1097,10 +1075,6 @@ gltfLoader.load('models/Ferriswheel/scene.gltf', gltf => {
     scene.add(ferrisGroup);
     addCollider(-18, -8, 2, 2, 'bianglala');
 });
-const bboxHelper = new THREE.BoxHelper(ferrisGroup, 0xffff00);
-
-// 3. Add the helper to your scene
-scene.add(bboxHelper);
 
 
 
