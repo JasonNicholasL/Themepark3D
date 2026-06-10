@@ -1,0 +1,11 @@
+Model Information:
+* title:	Side Stalls
+* source:	https://sketchfab.com/3d-models/side-stalls-fa330c8f231d42ef933e420eb08fe8c8
+* author:	Seven.Four (https://sketchfab.com/seven.four)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Side Stalls" (https://sketchfab.com/3d-models/side-stalls-fa330c8f231d42ef933e420eb08fe8c8) by Seven.Four (https://sketchfab.com/seven.four) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

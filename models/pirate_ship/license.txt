@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pirate Ship
+* source:	https://sketchfab.com/3d-models/pirate-ship-712b494468464413a5bd2332597ef840
+* author:	andy_hilaire (https://sketchfab.com/andy_hilaire)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pirate Ship" (https://sketchfab.com/3d-models/pirate-ship-712b494468464413a5bd2332597ef840) by andy_hilaire (https://sketchfab.com/andy_hilaire) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

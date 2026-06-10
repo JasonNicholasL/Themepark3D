@@ -1,0 +1,11 @@
+Model Information:
+* title:	Railing Low Poly
+* source:	https://sketchfab.com/3d-models/railing-low-poly-e6a110d7bbf5480aa5bb6be878bde8fb
+* author:	4mecharmi (https://sketchfab.com/4mecharmi)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Railing Low Poly" (https://sketchfab.com/3d-models/railing-low-poly-e6a110d7bbf5480aa5bb6be878bde8fb) by 4mecharmi (https://sketchfab.com/4mecharmi) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
